@@ -9,6 +9,9 @@ const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(cors());
+app.get("/",(req,res)=>{
+  res.send("welcome")
+})
 app.use("/job", PostingRouter);
 
 app.listen(PORT, async () => {

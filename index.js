@@ -2,14 +2,15 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const { connection } = require("./config/db");
-const { PostingRouter } = require("./routes/wordgame");
+const { QuizRouter } = require("./routes/quizroute");
+
 const app = express();
 
 const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(cors());
-app.use("/game", PostingRouter);
+app.use("/quiz", QuizRouter);
 
 app.listen(PORT, async () => {
   try {

@@ -5,7 +5,7 @@ const { authentication } = require("../middleware/authentication");
 
 const TicketRouter = Router();
 
-TicketRouter.get("/getdata",authentication, getData);
+TicketRouter.get("/getdata", getData);
 TicketRouter.post("/postdata",authentication, postData);
 
 module.exports = {

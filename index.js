@@ -15,10 +15,6 @@ app.use(cors());
 app.use("/auth",AuthRouter )
 app.use("/ticket",TicketRouter )
 
-
-app.get("/",(req,res)=>{
- res.send("welcome")
-})
 app.listen(PORT, async () => {
   try {
     await connection;

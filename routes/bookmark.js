@@ -6,8 +6,8 @@ const BookMarkRouter = Router();
 BookMarkRouter.get("/getbookmark",getBookmark );
 
 
-BookMarkRouter.post("/bookmarkpost", authentication,postBookmark );
-BookMarkRouter.delete("/bookmarkpost",authentication , delteBookmark );
+BookMarkRouter.post("/bookmarkpost",postBookmark );
+BookMarkRouter.delete("/bookmarkdelete" , delteBookmark );
 
 
 module.exports = {BookMarkRouter}

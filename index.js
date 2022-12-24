@@ -4,6 +4,7 @@ const cors = require("cors");
 const { connection } = require("./config/db");
 const {AuthRouter} = require("./routes/authRoute");
 const { TicketRouter } = require("./routes/ticketRoute");
+const { BookMarkRouter } = require("./routes/bookmark");
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 
 app.use("/auth",AuthRouter )
 app.use("/ticket",TicketRouter )
+app.use("/bookmark",BookMarkRouter )
 
 app.listen(PORT, async () => {
   try {

@@ -7,7 +7,7 @@ BookMarkRouter.get("/getbookmark",getBookmark );
 
 
 BookMarkRouter.post("/bookmarkpost",postBookmark );
-BookMarkRouter.post("/bookmarkpost",delteBookmark );
+BookMarkRouter.delete("/bookmarkpost",delteBookmark );
 
 
 module.exports = {BookMarkRouter}

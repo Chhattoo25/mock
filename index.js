@@ -2,7 +2,8 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const { connection } = require("./config/db");
-const { QuizRouter } = require("./routes/quizroute");
+const {AuthRouter} = require("./routes/authRoute");
+const { TicketRouter } = require("./routes/ticketRoute");
 
 const app = express();
 
@@ -10,7 +11,9 @@ const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(cors());
-app.use("/quiz", QuizRouter);
+
+app.use("/auth",AuthRouter )
+app.use("/ticket",TicketRouter )
 
 app.listen(PORT, async () => {
   try {

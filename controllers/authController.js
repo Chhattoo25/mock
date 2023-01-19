@@ -41,7 +41,6 @@ const login = async (req, res) => {
     const token = jwt.sign({ user_id: user_id }, process.env.SECRET_KEY);
     if (result) {
       res.send({ msg: "Login successfully", token });
-      localStorage.setItem("token", token);
     } else {
       res.send({ msg: "Login Failed" });
     }

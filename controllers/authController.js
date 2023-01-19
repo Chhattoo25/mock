@@ -1,9 +1,9 @@
-const { UserModel } = require("../Models/UserModel");
-var jwt = require('jsonwebtoken');
+const { UserModel } = require("../models/UserModel");
+var jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-require("dotenv").config()
+require("dotenv").config();
 const signup = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { email, password } = req.body;
   const isUser = await UserModel.findOne({ email });
   if (isUser) {
     res.send({ msg: "User already exist,logging in" });
@@ -13,7 +13,6 @@ const signup = async (req, res) => {
         res.send({ msg: "Something went wrong, please try again later" });
       }
       const new_user = new UserModel({
-        name,
         email,
         password: hash,
       });
@@ -41,6 +40,7 @@ const login = async (req, res) => {
     const token = jwt.sign({ user_id: user_id }, process.env.SECRET_KEY);
     if (result) {
       res.send({ msg: "Login successfully", token });
+      localStorage.setItem("token", token);
     } else {
       res.send({ msg: "Login Failed" });
     }
@@ -48,5 +48,6 @@ const login = async (req, res) => {
 };
 
 module.exports = {
-  signup,login
+  signup,
+  login,
 };

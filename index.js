@@ -1,21 +1,29 @@
 const express = require("express");
-require("dotenv").config();
-const cors = require("cors");
+var cors = require('cors')
 const { connection } = require("./config/db");
-const {AuthRouter} = require("./routes/authRoute");
-const { TicketRouter } = require("./routes/ticketRoute");
-const { BookMarkRouter } = require("./routes/bookmark");
-
+const { UserModel } = require("./models/UserModel");
+const { authentication } = require("./middleware/authentication");
+const { AuthRouter } = require("./routes/authRoute");
+require("dotenv").config()
 const app = express();
-
-const PORT = process.env.PORT || 4000;
-
+const PORT = process.env.PORT || 4000
 app.use(express.json());
-app.use(cors());
+app.use(cors())
+app.get("/", (req, res) => {
+  res.send("WELCOME");
+});
 
 app.use("/auth",AuthRouter )
-app.use("/ticket",TicketRouter )
-app.use("/bookmark",BookMarkRouter )
+
+app.get("/getprofile", authentication, async(req,res)=>{
+ const {user_id} = req.body
+ const user = await UserModel.findOne({_id:user_id})
+const {name,email} = user
+ res.send({name,email})
+})
+
+
+
 
 app.listen(PORT, async () => {
   try {
@@ -23,7 +31,7 @@ app.listen(PORT, async () => {
     console.log("connected to db successfully");
   } catch (err) {
     console.log(err);
-    console.log("err connected to db");
+    console.log("err from connected to DB");
   }
-  console.log("server started at  http://localhost:8080");
+  console.log("http://localhost:8080");
 });

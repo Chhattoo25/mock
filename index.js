@@ -1,8 +1,6 @@
 const express = require("express");
 var cors = require('cors')
 const { connection } = require("./config/db");
-const { UserModel } = require("./models/UserModel");
-const { authentication } = require("./middleware/authentication");
 const { AuthRouter } = require("./routes/authRoute");
 require("dotenv").config()
 const app = express();
@@ -14,14 +12,6 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth",AuthRouter )
-
-app.get("/getprofile", authentication, async(req,res)=>{
- const {user_id} = req.body
- const user = await UserModel.findOne({_id:user_id})
-const {name,email} = user
- res.send({name,email})
-})
-
 
 
 

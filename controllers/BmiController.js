@@ -14,7 +14,7 @@ const calculateBMI = async (req, res) => {
   const { height, weight, user_id } = req.body;
   const height_in_meter = Number(height) * 0.3048;
   const  BMI = (Number(weight) / height_in_meter ** 2).toFixed(2);
-  let result
+  let result="";
   if(BMI<18.5){
    result = "Underweight"
   }

@@ -1,7 +1,10 @@
 const express = require("express");
 var cors = require('cors')
 const { connection } = require("./config/db");
-const { AuthRouter } = require("./routes/authRoute");
+const { UserModel } = require("./models/UserModel");
+const { authentication } = require("./middleware/authentication");
+const { AuthRouter } = require("./routes/AuthRoute");
+const { BMIRouter } = require("./routes/BmiRoute");
 require("dotenv").config()
 const app = express();
 const PORT = process.env.PORT || 4000
@@ -11,7 +14,8 @@ app.get("/", (req, res) => {
   res.send("WELCOME");
 });
 
-app.use("/auth",AuthRouter )
+app.use('/auth',AuthRouter)
+app.use('/bmi',BMIRouter)
 
 
 
